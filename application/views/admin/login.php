@@ -1,95 +1,60 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<title><?=$title?></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>
+        <?=$title?>
+    </title>
 
-	<style type="text/css">
+    <!-- Bootstrap -->
+    <link href="<?=base_url('css/bootstrap.min.css')?>" rel="stylesheet">
 
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-		text-align: center;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="<?=base_url('js/html5shiv.min.js')?>"></script>
+      <script src="<?=base_url('js/respond.min.js')?>"></script>
+    <![endif]-->
 </head>
+
 <body>
+    <div class="container">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <br />
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="text-center"><?=$title?></h4>
+                </div>
+                <div class="panel-body">
+                    <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
+                        <?=form_open('admin/login')?>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">用户</span>
+                                <input type="input" name="user" value="<?=set_value('user')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">密码</span>
+                                <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="text-center">
+                                <input class="btn btn-warning btn-lg" type="submit" name="submit" value="登录" />
+                            </div>
+                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div id="container">
-	<h1><?=$title?></h1>
-	<div id="body">
-		<?php echo validation_errors(); ?>
-		<?php echo form_open('admin/login'); ?>
-			<label for="user">用户</label>
-			<input type="input" name="user" value="<?php echo set_value('user'); ?>" /><br />
-			<label for="pass">密码</label>
-			<input type="password" name="pass" value="<?php echo set_value('pass'); ?>" /><br />
-			<input type="submit" name="submit" value="登录" />
-		</form>
-	</div>
-
-	<p class="footer">
-		<em>
-			&copy;
-			<a href="https://github.com/Red54/shophp">Shophp</a>
-			2016
-		</em>
-	</p>
-</div>
-
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<?=base_url('js/jquery.min.js')?>"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="<?=base_url('js/bootstrap.min.js')?>"></script>
 </body>
-</html>
 
+</html>
