@@ -27,25 +27,25 @@
             <br />
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h4 class="text-center"><?=$title?></h4>
+                    <div class="text-center panel-title"><?=$title?></div>
                 </div>
                 <div class="panel-body">
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('admin/login')?>
-                            <div class="input-group input-group-lg">
+                        <?=form_open('adminlogin')?>
+                            <div class="input-group">
                                 <span class="input-group-addon">用户</span>
                                 <input type="input" name="user" value="<?=set_value('user')?>" class="form-control">
                             </div>
                             <br />
-                            <div class="input-group input-group-lg">
+                            <div class="input-group">
                                 <span class="input-group-addon">密码</span>
                                 <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
                             </div>
                             <br />
                             <div class="text-center">
-                                <input class="btn btn-warning btn-lg" type="submit" name="submit" value="登录" />
+                                <input class="btn btn-warning" type="submit" value="登录">
                             </div>
-                            </form>
+                        </form>
                 </div>
             </div>
         </div>
