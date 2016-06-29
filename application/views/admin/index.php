@@ -12,6 +12,7 @@
 
     <!-- Bootstrap -->
     <link href="<?=base_url('css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('css/shophp.css')?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +34,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Shophp</a>
+                    <a class="navbar-brand" href="<?=site_url()?>">Shophp</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,13 +42,14 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?=site_url('admin')?>">管理员<span class="sr-only">(current)</span></a></li>
                         <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
-                        <li><a href="<?=site_url('admin/goods')?>">商品信息</a></li>
+                        <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
                         <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
                         <li><a href="<?=site_url('admin/member')?>">会员</a></li>
                         <li><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
-                        <li><a href="<?=site_url('admin/article')?>">文章信息</a></li>
+                        <li><a href="<?=site_url('admin/article')?>">文章</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a><?=$this->session->admin?></a></li>
                         <li><a href="<?=site_url('admin/logout')?>">退出</a></li>
                     </ul>
                 </div>
@@ -58,7 +60,30 @@
 		<div class="panel panel-danger">
 		  <div class="panel-heading">管理员信息管理</div>
 		  <table class="table">
-			  
+			  <tr>
+				  <th>编号</th>
+				  <th>用户名</th>
+				  <th>联系电话</th>
+				  <th>QQ</th>
+				  <th>邮箱地址</th>
+				  <th>注册日期</th>
+				  <th>状态</th>
+				  <th>编辑</th>
+				  <th>删除</th>
+			  </tr>
+			  <?php foreach ($admin as $a): ?>
+				  <tr>
+					  <td><?=$a['id']?></td>
+					  <td><?=$a['user']?></td>
+					  <td><?=$a['tel']?></td>
+					  <td><?=$a['qq']?></td>
+					  <td><?=$a['email']?></td>
+					  <td><?=$a['regdate']?></td>
+					  <td><?php if (1 == $a['status']) echo '启用'; else echo '停用';?></td>
+					  <td><a href="<?=site_url('admin/edit/'.$a['id'])?>">编辑</a></td>
+					  <td><a href="<?=site_url('admin/del/'.$a['id'])?>">删除</a></td>
+				  </tr>
+				  <?php endforeach; ?>
 		  </table>
 		</div>
     </div>
