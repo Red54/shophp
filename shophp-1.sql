@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 29, 2016 at 12:24 PM
--- Server version: 10.1.14-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Jun 30, 2016 at 01:43 AM
+-- Server version: 10.0.25-MariaDB-1
+-- PHP Version: 7.0.5-2+b1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -47,7 +47,7 @@ CREATE TABLE `admin` (
   `qq` varchar(20) NOT NULL COMMENT 'QQ',
   `email` varchar(50) NOT NULL COMMENT '邮箱地址',
   `regdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '注册日期',
-  `status` int(11) NOT NULL DEFAULT '1' COMMENT '状态'
+  `status` int(11) NOT NULL COMMENT '状态'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='管理员信息表';
 
 --

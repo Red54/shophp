@@ -17,7 +17,7 @@ class Adminlogin extends CI_Controller
         $this->form_validation->set_rules('user', '用户', 'trim|required');
         $this->form_validation->set_rules('pass', '密码', 'trim|required|callback__validation');
         if ($this->form_validation->run() === false) {
-            $data['title'] = 'Shophp 系统登录';
+            $data['title'] = ' 后台登录';
             $this->load->view('admin/login', $data);
         } else {
             $this->session->set_userdata('admin', $this->input->post('user'));

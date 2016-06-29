@@ -59,32 +59,42 @@
         </nav>
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
             <div class="panel panel-danger">
-                <div class="panel-heading">管理员信息 <small>编辑资料</small></div>
+                <div class="panel-heading">管理员信息 <small>新建管理员</small></div>
                 <div class="panel-body">
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('admin/edit/'.$id)?>
+                        <?=form_open('admin/add')?>
                             <div class="input-group">
                                 <span class="input-group-addon">用户名</span>
-                                <input type="input" name="user" value="<?=set_value('user') ? set_value('user') : $a['user']?>" class="form-control">
+                                <input type="input" name="user" value="<?=set_value('user')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">密码</span>
+                                <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">确认密码</span>
+                                <input type="password" name="conp" value="<?=set_value('conp')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">联系电话</span>
-                                <input type="input" name="tel" value="<?=set_value('tel') ? set_value('tel') : $a['tel']?>" class="form-control">
+                                <input type="input" name="tel" value="<?=set_value('tel')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">QQ</span>
-                                <input type="input" name="qq" value="<?=set_value('qq') ? set_value('qq') : $a['qq']?>" class="form-control">
+                                <input type="input" name="qq" value="<?=set_value('qq')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">邮箱地址</span>
-                                <input type="input" name="email" value="<?=set_value('email') ? set_value('email') : $a['email']?>" class="form-control">
+                                <input type="input" name="email" value="<?=set_value('email')?>" class="form-control">
                             </div>
                             <div class="text-center">
                                 <div class="radio">
-                                    <?php $status = NULL != set_value('status') ? set_value('status') : $a['status'];?>
+                                    <?php $status = NULL != set_value('status') ? set_value('status') : 1;?>
                                     <label>
                                         <input type="radio" name="status" value="1" <?php if (1==$status) { echo 'checked'; }?>> 启用
                                     </label>

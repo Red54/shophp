@@ -10,27 +10,18 @@ class Admin_model extends CI_Model
     public function strange()
     {
         $user = array('user' => $this->session->admin);
-        $query = $this->db->get_where('admin', $user);
+        $row = $this->db->get_where('admin', $user)->row_array();
 
-        return 1 != $query->row()->status;
-    }
-
-    public function oldpass()
-    {
-        $sha1 = sha1($this->input->post('oldp'));
-        $user = array('user' => $this->input->post('user'));
-        $query = $this->db->get_where('admin', $user);
-
-        return $sha1 == $query->row()->pass;
+        return 1 != $row['status'];
     }
 
     public function validation()
     {
         $sha1 = sha1($this->input->post('pass'));
         $user = array('user' => $this->input->post('user'));
-        $query = $this->db->get_where('admin', $user);
-        $pass = $query->row()->pass;
-        $status = $query->row()->status;
+        $row = $this->db->get_where('admin', $user)->row_array();
+        $pass = $row['pass'];
+        $status = $row['status'];
 
         return $sha1 == $pass && 1 == $status;
     }
@@ -43,20 +34,32 @@ class Admin_model extends CI_Model
             'tel' => $this->input->post('tel'),
             'qq' => $this->input->post('qq'),
             'email' => $this->input->post('email'),
+            'status' => $this->input->post('status'),
         );
 
         return $this->db->insert('admin', $data);
     }
 
-    public function set($id)
+    public function edit($id)
     {
         $data = array(
-            'user' => $this->input->post('user'),
-            'tel' => $this->input->post('tel'),
-            'qq' => $this->input->post('qq'),
-            'email' => $this->input->post('email'),
-            'status' => $this->input->post('status'),
-        );
+                'user' => $this->input->post('user'),
+                'tel' => $this->input->post('tel'),
+                'qq' => $this->input->post('qq'),
+                'email' => $this->input->post('email'),
+                'status' => $this->input->post('status'),
+            );
+
+        if (1 == $id) {
+            $data['status'] = 1;
+        }
+
+        return $this->db->update('admin', $data, array('id' => $id));
+    }
+
+    public function passwd($id)
+    {
+        $data['pass'] = sha1($this->input->post('pass'));
 
         return $this->db->update('admin', $data, array('id' => $id));
     }

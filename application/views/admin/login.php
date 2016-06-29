@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>
-        <?=$title?>
+        <?=$this->config->item('title') . $title?>
     </title>
 
     <!-- Bootstrap -->
@@ -28,14 +28,14 @@
             <br />
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <div class="text-center panel-title"><?=$title?></div>
+                    <div class="text-center panel-title"><?=$this->config->item('title') . $title?></div>
                 </div>
                 <div class="panel-body">
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
                         <?=form_open('adminlogin')?>
                             <div class="input-group">
                                 <span class="input-group-addon">用户</span>
-                                <input type="input" name="user" value="<?=set_value('user')?>" class="form-control">
+                                <input type="input" name="user" id="name" value="<?=set_value('user')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
@@ -56,6 +56,7 @@
     <script src="<?=base_url('js/jquery.min.js')?>"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?=base_url('js/bootstrap.min.js')?>"></script>
+    <script>document.getElementById('name').focus();</script>
 </body>
 
 </html>

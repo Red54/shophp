@@ -6,18 +6,73 @@ class Admin extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();{
+        parent::__construct();
+        {
             $this->load->model('admin_model');
-        if ($this->admin_model->strange())
+        if ($this->admin_model->strange()) {
             redirect('adminlogin');
+        }
         }
     }
 
     public function index()
     {
-        $data['title'] = 'Shophp 系统';
+        $data['title'] = ' 管理员信息';
         $data['admin'] = $this->admin_model->get();
         $this->load->view('admin/index', $data);
+    }
+
+    public function add()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('user', '用户名', 'trim|required');
+        $this->form_validation->set_rules('pass', '密码', 'trim|required|min_length[6]');
+        $this->form_validation->set_rules('conp', '确认密码', 'trim|required|matches[pass]');
+        $this->form_validation->set_rules('tel', '联系电话', 'trim');
+        $this->form_validation->set_rules('qq', 'QQ', 'trim');
+        $this->form_validation->set_rules('email', '邮箱地址', 'trim|valid_email');
+        $this->form_validation->set_rules('status', '状态', 'trim|required');
+        if ($this->form_validation->run() === false) {
+            $data['title'] = ' 管理员信息 新建管理员';
+            $this->load->view('admin/add', $data);
+        } else {
+            $this->admin_model->add();
+            redirect('admin');
+        }
+    }
+
+    public function edit($id)
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('user', '用户名', 'trim|required');
+        $this->form_validation->set_rules('tel', '联系电话', 'trim');
+        $this->form_validation->set_rules('qq', 'QQ', 'trim');
+        $this->form_validation->set_rules('email', '邮箱地址', 'trim|valid_email');
+        $this->form_validation->set_rules('status', '状态', 'trim|required');
+        if ($this->form_validation->run() === false) {
+            $data['title'] = ' 管理员信息 编辑资料';
+            $data['id'] = $id;
+            $data['a'] = $this->admin_model->get($id);
+            $this->load->view('admin/edit', $data);
+        } else {
+            $this->admin_model->edit($id);
+            redirect('admin');
+        }
+    }
+
+    public function passwd($id)
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('pass', '新密码', 'trim|required|min_length[6]');
+        $this->form_validation->set_rules('conp', '确认密码', 'trim|required|matches[pass]');
+        if ($this->form_validation->run() === false) {
+            $data['title'] = ' 管理员信息 修改密码';
+            $data['id'] = $id;
+            $this->load->view('admin/passwd', $data);
+        } else {
+            $this->admin_model->passwd($id);
+            redirect('admin');
+        }
     }
 
     public function del($id)
@@ -26,34 +81,6 @@ class Admin extends CI_Controller
             $this->admin_model->del($id);
         }
         redirect('admin');
-    }
-
-    public function edit($id)
-    {
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('user', '用户名', 'trim|required');
-        $this->form_validation->set_rules('oldp', '旧密码', 'trim');
-        $this->form_validation->set_rules('pass', '新密码', 'trim|min_length[6]|matches[conp]');
-        $this->form_validation->set_rules('conp', '确认密码', 'trim|matches[pass]');
-        $this->form_validation->set_rules('status', '状态', 'trim|required|callback__validation');
-        if ($this->form_validation->run() === false) {
-            $data['title'] = 'Shophp 系统';
-            $data['id'] = $id;
-            $data['a'] = $this->admin_model->get($id);
-            $this->load->view('admin/edit', $data);
-        } else {
-            $this->admin_model->set($id);
-            redirect('admin');
-        }
-    }
-
-    public function _validation()
-    {
-        if (null != $this->input->post('pass')) {
-            $this->form_validation->set_message('_validation', '旧密码 错误');
-
-            return $this->admin_model->oldpass();
-        }
     }
 
     public function logout()

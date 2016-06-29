@@ -57,37 +57,30 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
-		<div class="panel panel-danger">
-		  <div class="panel-heading">管理员信息 <small>（1号管理员无法被停用或删除）</small><a class="pull-right" href="<?=site_url('admin/add')?>">新建管理员</a></div>
-		  <table class="table">
-			  <tr>
-				  <th>编号</th>
-				  <th>用户名</th>
-				  <th>联系电话</th>
-				  <th>QQ</th>
-				  <th>邮箱地址</th>
-				  <th>注册日期</th>
-				  <th>状态</th>
-				  <th>编辑资料</th>
-				  <th>修改密码</th>
-				  <th>删除</th>
-			  </tr>
-			  <?php foreach ($admin as $a): ?>
-				  <tr>
-					  <td><?=$a['id']?></td>
-					  <td><?=$a['user']?></td>
-					  <td><?=$a['tel']?></td>
-					  <td><?=$a['qq']?></td>
-					  <td><?=$a['email']?></td>
-					  <td><?=$a['regdate']?></td>
-					  <td><?php if (1 == $a['status']) echo '启用'; else echo '停用';?></td>
-					  <td><a href="<?=site_url('admin/edit/'.$a['id'])?>">编辑资料</a></td>
-					  <td><a href="<?=site_url('admin/passwd/'.$a['id'])?>">修改密码</a></td>
-					  <td><a href="<?=site_url('admin/del/'.$a['id'])?>" onclick="return confirm('您确认要删除此管理员吗？')">删除</a></td>
-				  </tr>
-				  <?php endforeach; ?>
-		  </table>
-		</div>
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading">管理员信息 <small>修改密码</small></div>
+                <div class="panel-body">
+                    <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
+                        <?=form_open('admin/passwd/'.$id)?>
+                            <div class="input-group">
+                                <span class="input-group-addon">新密码</span>
+                                <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">确认密码</span>
+                                <input type="password" name="conp" value="<?=set_value('conp')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="text-center">
+                                <input class="btn btn-warning" type="submit" value="提交">
+                            </div>
+
+                            </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
