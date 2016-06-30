@@ -16,7 +16,7 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('user', '用户', 'trim|required');
         $this->form_validation->set_rules('pass', '密码', 'trim|required|callback__validation');
         if ($this->form_validation->run() === false) {
-            $data['title'] = ' 后台登录';
+            $data['title'] = '后台登录';
             $this->load->view('admin/login', $data);
         } else {
             $this->session->set_userdata('admin', $this->input->post('user'));
@@ -27,10 +27,16 @@ class Login extends CI_Controller
     public function _validation()
     {
         if (null != $this->input->post('user') && null != $this->input->post('pass')) {
-            $this->form_validation->set_message('_validation', '登录失败');
             $this->load->model('admin_model');
+            if ($this->admin_model->vpass()) {
+                $this->form_validation->set_message('_validation', '该管理员已被停用');
 
-            return $this->admin_model->validation();
+                return $this->admin_model->vstatus();
+            } else {
+                $this->form_validation->set_message('_validation', '用户 或 密码 错误');
+
+                return false;
+            }
         }
     }
 }

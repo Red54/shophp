@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>
-        <?=$this->config->item('title') . $title?>
+        <?=$this->config->item('title')?> <?=$title?>
     </title>
 
     <!-- Bootstrap -->
@@ -28,7 +28,7 @@
             <br />
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <div class="text-center panel-title"><?=$this->config->item('title') . $title?></div>
+                    <div class="text-center panel-title"><?=$this->config->item('title')?> <?=$title?></div>
                 </div>
                 <div class="panel-body">
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>

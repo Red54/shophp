@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2016 at 05:27 AM
+-- Generation Time: Jun 30, 2016 at 12:24 PM
 -- Server version: 10.1.14-MariaDB
 -- PHP Version: 7.0.8
 
@@ -115,7 +115,6 @@ CREATE TABLE `member` (
   `pass` varchar(50) NOT NULL COMMENT '密码',
   `passq` varchar(50) NOT NULL COMMENT '密码保护问题',
   `passa` varchar(50) NOT NULL COMMENT '密码保护答案',
-  `idnum` varchar(30) NOT NULL COMMENT '身份证号',
   `tel` varchar(20) NOT NULL COMMENT '联系电话',
   `qq` varchar(20) NOT NULL COMMENT 'QQ',
   `mail` varchar(50) NOT NULL COMMENT '邮箱',
@@ -123,7 +122,7 @@ CREATE TABLE `member` (
   `pcode` varchar(20) NOT NULL COMMENT '邮政编码',
   `total` float NOT NULL COMMENT '消费总额',
   `balance` float NOT NULL COMMENT '余额',
-  `regdate` datetime NOT NULL COMMENT '注册日期',
+  `regdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '注册日期',
   `status` int(11) NOT NULL COMMENT '状态'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员信息表';
 

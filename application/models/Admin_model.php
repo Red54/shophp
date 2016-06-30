@@ -7,23 +7,27 @@ class Admin_model extends CI_Model
         $this->load->database();
     }
 
-    public function strange()
+    public function vsession()
     {
         $user = array('user' => $this->session->admin);
         $row = $this->db->get_where('admin', $user)->row_array();
-
         return 1 != $row['status'];
     }
 
-    public function validation()
+    public function vstatus()
+    {
+        $user = array('user' => $this->input->post('user'));
+        $row = $this->db->get_where('admin', $user)->row_array();
+        return 1 == $row['status'];
+    }
+
+    public function vpass()
     {
         $sha1 = sha1($this->input->post('pass'));
         $user = array('user' => $this->input->post('user'));
         $row = $this->db->get_where('admin', $user)->row_array();
-        $pass = $row['pass'];
-        $status = $row['status'];
 
-        return $sha1 == $pass && 1 == $status;
+        return $sha1 == $row['pass'];
     }
 
     public function add()

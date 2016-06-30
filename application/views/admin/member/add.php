@@ -40,11 +40,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?=site_url('admin/admin')?>">管理员<span class="sr-only">(current)</span></a></li>
+                        <li><a href="<?=site_url('admin/admin')?>">管理员<span class="sr-only">(current)</span></a></li>
                         <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
                         <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
                         <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
-                        <li><a href="<?=site_url('admin/member')?>">会员</a></li>
+                        <li class="active"><a href="<?=site_url('admin/member')?>">会员</a></li>
                         <li><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
                         <li><a href="<?=site_url('admin/article')?>">文章</a></li>
                     </ul>
@@ -62,34 +62,64 @@
                 <div class="panel-heading"><?=$title?> <small><?=$subtitle?></small></div>
                 <div class="panel-body">
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('admin/admin/edit/'.$id)?>
+                        <?=form_open('admin/member/add')?>
                             <div class="input-group">
-                                <span class="input-group-addon">用户名</span>
-                                <input type="input" value="<?=$a['user']?>" class="form-control" disabled>
+                                <span class="input-group-addon">会员名</span>
+                                <input type="input" name="name" value="<?=set_value('name')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">密码</span>
+                                <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">确认密码</span>
+                                <input type="password" name="conp" value="<?=set_value('conp')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">密保问题</span>
+                                <input type="input" name="passq" value="<?=set_value('passq')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">密保答案</span>
+                                <input type="input" name="passa" value="<?=set_value('passa')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">联系电话</span>
-                                <input type="input" name="tel" value="<?=set_value('tel') ? set_value('tel') : $a['tel']?>" class="form-control">
+                                <input type="input" name="tel" value="<?=set_value('tel')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">QQ</span>
-                                <input type="input" name="qq" value="<?=set_value('qq') ? set_value('qq') : $a['qq']?>" class="form-control">
+                                <input type="input" name="qq" value="<?=set_value('qq')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
-                                <span class="input-group-addon">邮箱地址</span>
-                                <input type="input" name="email" value="<?=set_value('email') ? set_value('email') : $a['email']?>" class="form-control">
+                                <span class="input-group-addon">邮箱</span>
+                                <input type="input" name="mail" value="<?=set_value('mail')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">联系地址</span>
+                                <input type="input" name="address" value="<?=set_value('address')?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">邮政编码</span>
+                                <input type="input" name="pcode" value="<?=set_value('pcode')?>" class="form-control">
                             </div>
                             <div class="text-center">
                                 <div class="radio">
-                                    <?php $status = NULL != set_value('status') ? set_value('status') : $a['status'];?>
+                                    <?php $status = NULL != set_value('status') ? set_value('status') : 1;?>
                                     <label>
-                                        <input type="radio" name="status" value="1" <?php if (1==$status) { echo 'checked'; }?>> 启用
+                                        <input type="radio" name="status" value="1" <?php if (1==$status) { echo 'checked'; }?>> 正常
                                     </label>
                                     <label>
-                                        <input type="radio" name="status" value="0" <?php if (0==$status) { echo 'checked'; }?>> 停用
+                                        <input type="radio" name="status" value="0" <?php if (0==$status) { echo 'checked'; }?>> 冻结
                                     </label>
                                 </div>
                                 <input class="btn btn-warning" type="submit" value="提交">

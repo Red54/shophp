@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>
-        <?=$this->config->item('title') . $title?>
+        <?=$this->config->item('title')?> <?=$title?>
     </title>
 
     <!-- Bootstrap -->
@@ -58,7 +58,7 @@
             <!-- /.container-fluid -->
         </nav>
 		<div class="panel panel-danger">
-		  <div class="panel-heading">管理员信息 <small>（1号管理员无法被停用或删除）</small><a class="pull-right" href="<?=site_url('admin/admin/add')?>">新建管理员</a></div>
+		  <div class="panel-heading"><?=$title?> <small>（1号管理员无法被停用或删除）</small><a class="pull-right" href="<?=site_url('admin/admin/add')?>">新建管理员</a></div>
 		  <table class="table">
 			  <tr>
 				  <th>编号</th>

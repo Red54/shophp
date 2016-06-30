@@ -9,7 +9,7 @@ class Admin extends CI_Controller
         parent::__construct();
         {
             $this->load->model('admin_model');
-            if ($this->admin_model->strange()) {
+            if ($this->admin_model->vsession()) {
                 redirect('admin/login');
             }
         }
@@ -17,7 +17,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        $data['title'] = ' 管理员信息';
+        $data['title'] = '管理员信息';
         $data['admin'] = $this->admin_model->get();
         $this->load->view('admin/admin/index', $data);
     }
@@ -33,7 +33,8 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('email', '邮箱地址', 'trim|valid_email');
         $this->form_validation->set_rules('status', '状态', 'trim|required');
         if ($this->form_validation->run() === false) {
-            $data['title'] = ' 管理员信息 新建管理员';
+            $data['title'] = '管理员信息';
+            $data['subtitle'] = '新建管理员';
             $this->load->view('admin/admin/add', $data);
         } else {
             $this->admin_model->add();
@@ -49,7 +50,8 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('email', '邮箱地址', 'trim|valid_email');
         $this->form_validation->set_rules('status', '状态', 'trim|required');
         if ($this->form_validation->run() === false) {
-            $data['title'] = ' 管理员信息 编辑资料';
+            $data['title'] = '管理员信息';
+            $data['subtitle'] = '编辑资料';
             $data['id'] = $id;
             $data['a'] = $this->admin_model->get($id);
             $this->load->view('admin/admin/edit', $data);
@@ -65,7 +67,8 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('pass', '新密码', 'trim|required|min_length[6]');
         $this->form_validation->set_rules('conp', '确认密码', 'trim|required|matches[pass]');
         if ($this->form_validation->run() === false) {
-            $data['title'] = ' 管理员信息 修改密码';
+            $data['title'] = '管理员信息';
+            $data['subtitle'] = '修改密码';
             $data['id'] = $id;
             $this->load->view('admin/admin/passwd', $data);
         } else {
