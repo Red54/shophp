@@ -41,11 +41,11 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?=site_url('admin/admin')?>">管理员<span class="sr-only">(current)</span></a></li>
-                        <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
+                        <li class="active"><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
                         <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
                         <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
                         <li><a href="<?=site_url('admin/member')?>">会员</a></li>
-                        <li class="active"><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
+                        <li><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
                         <li><a href="<?=site_url('admin/article')?>">文章</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -57,29 +57,35 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
-		<div class="panel panel-danger">
-		  <div class="panel-heading"><?=$title?></small><a class="pull-right" href="<?=site_url('admin/acate/add')?>">新建类别</a></div>
-		  <table class="table">
-			  <tr>
-				  <th>编号</th>
-				  <th>父级类别</th>
-				  <th>类别名称</th>
-				  <th>类别简介</th>
-				  <th>编辑</th>
-				  <th>删除</th>
-			  </tr>
-			  <?php foreach ($acate as $a): ?>
-				  <tr>
-					  <td><?=$a['id']?></td>
-					  <td><?=$a['pname']?></td>
-					  <td><?=$a['name']?></td>
-					  <td><?=$a['intro']?></td>
-					  <td><a href="<?=site_url('admin/acate/edit/'.$a['id'])?>">编辑</a></td>
-					  <td><a href="<?=site_url('admin/acate/del/'.$a['id'])?>" onclick="return confirm('您确认要删除此类别吗？')">删除</a></td>
-				  </tr>
-				  <?php endforeach; ?>
-		  </table>
-		</div>
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading"><?=$title?> <small><?=$subtitle?></small></div>
+                <div class="panel-body">
+                    <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
+                        <?=form_open('admin/gcate/edit/'.$id)?>
+                            <div class="input-group">
+                                <span class="input-group-addon">父级类别</span>
+								<?=form_dropdown('pid', $pname, $a['pid'], 'class="form-control"')?>
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">类别名称</span>
+                                <input type="input" name="name" value="<?=set_value('name') ? set_value('name') : $a['name']?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">类别简介</span>
+                                <input type="input" name="intro" value="<?=set_value('intro') ? set_value('intro') : $a['intro']?>" class="form-control">
+                            </div>
+                            <br />
+                            <div class="text-center">
+                                <input class="btn btn-warning" type="submit" value="提交">
+                            </div>
+
+                            </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

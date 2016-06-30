@@ -41,11 +41,11 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?=site_url('admin/admin')?>">管理员<span class="sr-only">(current)</span></a></li>
-                        <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
+                        <li class="active"><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
                         <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
                         <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
                         <li><a href="<?=site_url('admin/member')?>">会员</a></li>
-                        <li class="active"><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
+                        <li><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
                         <li><a href="<?=site_url('admin/article')?>">文章</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -58,7 +58,7 @@
             <!-- /.container-fluid -->
         </nav>
 		<div class="panel panel-danger">
-		  <div class="panel-heading"><?=$title?></small><a class="pull-right" href="<?=site_url('admin/acate/add')?>">新建类别</a></div>
+		  <div class="panel-heading"><?=$title?></small><a class="pull-right" href="<?=site_url('admin/gcate/add')?>">新建类别</a></div>
 		  <table class="table">
 			  <tr>
 				  <th>编号</th>
@@ -68,14 +68,14 @@
 				  <th>编辑</th>
 				  <th>删除</th>
 			  </tr>
-			  <?php foreach ($acate as $a): ?>
+			  <?php foreach ($gcate as $a): ?>
 				  <tr>
 					  <td><?=$a['id']?></td>
 					  <td><?=$a['pname']?></td>
 					  <td><?=$a['name']?></td>
 					  <td><?=$a['intro']?></td>
-					  <td><a href="<?=site_url('admin/acate/edit/'.$a['id'])?>">编辑</a></td>
-					  <td><a href="<?=site_url('admin/acate/del/'.$a['id'])?>" onclick="return confirm('您确认要删除此类别吗？')">删除</a></td>
+					  <td><a href="<?=site_url('admin/gcate/edit/'.$a['id'])?>">编辑</a></td>
+					  <td><a href="<?=site_url('admin/gcate/del/'.$a['id'])?>" onclick="return confirm('您确认要删除此类别吗？')">删除</a></td>
 				  </tr>
 				  <?php endforeach; ?>
 		  </table>

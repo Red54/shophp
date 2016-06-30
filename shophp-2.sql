@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2016 at 02:42 PM
--- Server version: 10.1.14-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Jul 01, 2016 at 12:05 AM
+-- Server version: 10.0.25-MariaDB-1
+-- PHP Version: 7.0.5-2+b1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,7 +41,8 @@ INSERT INTO `acate` (`id`, `pid`, `name`, `intro`) VALUES
 (1, 0, '地球武器广告', '地球的本地的'),
 (2, 0, '外星武器广告', '地外黑科技'),
 (3, 1, '大东亚决战兵器广告', '土共核心科技'),
-(4, 2, 'K隆星武器广告', 'KeroKero');
+(4, 2, 'K隆星武器广告', 'KeroKero'),
+(5, 1, '元首秘武广告', '元首的秘密武器');
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,17 @@ CREATE TABLE `gcate` (
   `name` varchar(20) NOT NULL COMMENT '类别名称',
   `intro` text NOT NULL COMMENT '类别简介'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品类别表';
+
+--
+-- Dumping data for table `gcate`
+--
+
+INSERT INTO `gcate` (`id`, `pid`, `name`, `intro`) VALUES
+(1, 0, '地球武器', '地球的本地的'),
+(2, 0, '外星武器', '地外黑科技'),
+(3, 1, '大东亚决战兵器', '土共核心科技'),
+(4, 2, 'K隆星武器', 'KeroKero'),
+(5, 1, '元首秘武', '元首的秘密武器');
 
 -- --------------------------------------------------------
 
@@ -257,7 +269,7 @@ ALTER TABLE `ogoods`
 -- AUTO_INCREMENT for table `acate`
 --
 ALTER TABLE `acate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '类别编号', AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '类别编号', AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `admin`
 --
@@ -272,7 +284,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT for table `gcate`
 --
 ALTER TABLE `gcate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '类别编号';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '类别编号', AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `goods`
 --
