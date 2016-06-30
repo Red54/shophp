@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 01, 2016 at 12:05 AM
+-- Generation Time: Jul 01, 2016 at 03:09 AM
 -- Server version: 10.0.25-MariaDB-1
 -- PHP Version: 7.0.5-2+b1
 
@@ -81,9 +81,18 @@ CREATE TABLE `article` (
   `abstract` text NOT NULL COMMENT '摘要',
   `content` text NOT NULL COMMENT '内容',
   `views` int(11) NOT NULL COMMENT '访问量',
-  `pubtime` datetime NOT NULL COMMENT '发布时间',
+  `pubtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
   `status` int(11) NOT NULL COMMENT '状态'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章信息表';
+
+--
+-- Dumping data for table `article`
+--
+
+INSERT INTO `article` (`id`, `cid`, `title`, `abstract`, `content`, `views`, `pubtime`, `status`) VALUES
+(1, 3, '小米加步枪买二送一啦！！', '小米加步枪（小型米加粒子步枪，Compact Mega Particle Rifle）买二送一啦！！', '土共核心科技！土共核心科技！大东亚决战兵器！大东亚决战兵器！小米加步枪！小米加步枪！买二送一啦！买二送一啦！\r\n\r\n小米加步枪（小型米加粒子步枪，Compact Mega Particle Rifle），一种在八年战争阶段，通过未知技术渠道被秘密发展出来的强大小型单兵可携带米加粒子武器。敌后根据地的技术工程师们很巧妙的将从微型核聚变反应炉以及米诺夫斯基粒子冷凝器内置在枪托内，并使用现役步枪的外观进行改造，比如最常见的三八式步枪、中正式步枪，甚至还有很罕见的汉阳造外观改装型。紧凑的设计以及伪装外观，在取得非常优异人机工学的同时，还非常隐蔽，很具有欺骗性，经常达到出奇制胜的效果。\r\n\r\n如今这款土共核心科技，大东亚决战兵器，小米加步枪，买二送一了！！机不可失，失不再来！买了不吃亏，买了不上当！', 0, '2016-07-01 02:07:46', 1),
+(2, 4, 'K隆星功能饮料“赤汁”上市！！', 'K隆星功能饮料“赤汁”上市！！', 'K隆星功能饮料“赤汁”上市！！<br><br>“赤汁”，由战斗必须的营养植物混合提取的功能饮料，很难喝但会上瘾，战场上的红魔鬼Giroro亲自代言！<br>', 0, '2016-07-01 02:11:50', 1),
+(3, 5, '元首御用便携式超级计算机上市啦！！', '元首御用便携式超级计算机上市啦！！<br>', '元首御用便携式超级计算机上市啦！！', 0, '2016-07-01 02:47:03', 1);
 
 -- --------------------------------------------------------
 
@@ -279,7 +288,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '文章编号';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '文章编号', AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `gcate`
 --
