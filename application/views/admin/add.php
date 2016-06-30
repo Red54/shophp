@@ -40,7 +40,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?=site_url('admin')?>">管理员<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="<?=site_url('admin/admin')?>">管理员<span class="sr-only">(current)</span></a></li>
                         <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
                         <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
                         <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
@@ -62,7 +62,7 @@
                 <div class="panel-heading">管理员信息 <small>新建管理员</small></div>
                 <div class="panel-body">
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('admin/add')?>
+                        <?=form_open('admin/admin/add')?>
                             <div class="input-group">
                                 <span class="input-group-addon">用户名</span>
                                 <input type="input" name="user" value="<?=set_value('user')?>" class="form-control">

@@ -2,12 +2,11 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Adminlogin extends CI_Controller
+class Login extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('admin_model');
     }
 
     public function index()
@@ -21,7 +20,7 @@ class Adminlogin extends CI_Controller
             $this->load->view('admin/login', $data);
         } else {
             $this->session->set_userdata('admin', $this->input->post('user'));
-            redirect('admin');
+            redirect('admin/admin');
         }
     }
 
@@ -29,6 +28,7 @@ class Adminlogin extends CI_Controller
     {
         if (null != $this->input->post('user') && null != $this->input->post('pass')) {
             $this->form_validation->set_message('_validation', '登录失败');
+            $this->load->model('admin_model');
 
             return $this->admin_model->validation();
         }

@@ -40,7 +40,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?=site_url('admin')?>">管理员<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="<?=site_url('admin/admin')?>">管理员<span class="sr-only">(current)</span></a></li>
                         <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
                         <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
                         <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
@@ -58,7 +58,7 @@
             <!-- /.container-fluid -->
         </nav>
 		<div class="panel panel-danger">
-		  <div class="panel-heading">管理员信息 <small>（1号管理员无法被停用或删除）</small><a class="pull-right" href="<?=site_url('admin/add')?>">新建管理员</a></div>
+		  <div class="panel-heading">管理员信息 <small>（1号管理员无法被停用或删除）</small><a class="pull-right" href="<?=site_url('admin/admin/add')?>">新建管理员</a></div>
 		  <table class="table">
 			  <tr>
 				  <th>编号</th>
@@ -81,9 +81,9 @@
 					  <td><?=$a['email']?></td>
 					  <td><?=$a['regdate']?></td>
 					  <td><?php if (1 == $a['status']) echo '启用'; else echo '停用';?></td>
-					  <td><a href="<?=site_url('admin/edit/'.$a['id'])?>">编辑资料</a></td>
-					  <td><a href="<?=site_url('admin/passwd/'.$a['id'])?>">修改密码</a></td>
-					  <td><a href="<?=site_url('admin/del/'.$a['id'])?>" onclick="return confirm('您确认要删除此管理员吗？')">删除</a></td>
+					  <td><a href="<?=site_url('admin/admin/edit/'.$a['id'])?>">编辑资料</a></td>
+					  <td><a href="<?=site_url('admin/admin/passwd/'.$a['id'])?>">修改密码</a></td>
+					  <td><a href="<?=site_url('admin/admin/del/'.$a['id'])?>" onclick="return confirm('您确认要删除此管理员吗？')">删除</a></td>
 				  </tr>
 				  <?php endforeach; ?>
 		  </table>

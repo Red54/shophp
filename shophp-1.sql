@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2016 at 01:43 AM
--- Server version: 10.0.25-MariaDB-1
--- PHP Version: 7.0.5-2+b1
+-- Generation Time: Jun 30, 2016 at 05:28 AM
+-- Server version: 10.1.14-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -185,7 +185,8 @@ ALTER TABLE `acate`
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user` (`user`);
 
 --
 -- Indexes for table `article`

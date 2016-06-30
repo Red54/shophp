@@ -43,7 +43,6 @@ class Admin_model extends CI_Model
     public function edit($id)
     {
         $data = array(
-                'user' => $this->input->post('user'),
                 'tel' => $this->input->post('tel'),
                 'qq' => $this->input->post('qq'),
                 'email' => $this->input->post('email'),

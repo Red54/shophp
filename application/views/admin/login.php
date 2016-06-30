@@ -32,7 +32,7 @@
                 </div>
                 <div class="panel-body">
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('adminlogin')?>
+                        <?=form_open('admin/login')?>
                             <div class="input-group">
                                 <span class="input-group-addon">用户</span>
                                 <input type="input" name="user" id="name" value="<?=set_value('user')?>" class="form-control">

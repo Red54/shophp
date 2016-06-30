@@ -9,9 +9,9 @@ class Admin extends CI_Controller
         parent::__construct();
         {
             $this->load->model('admin_model');
-        if ($this->admin_model->strange()) {
-            redirect('adminlogin');
-        }
+            if ($this->admin_model->strange()) {
+                redirect('admin/login');
+            }
         }
     }
 
@@ -25,7 +25,7 @@ class Admin extends CI_Controller
     public function add()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('user', '用户名', 'trim|required');
+        $this->form_validation->set_rules('user', '用户名', 'trim|required|is_unique[admin.user]');
         $this->form_validation->set_rules('pass', '密码', 'trim|required|min_length[6]');
         $this->form_validation->set_rules('conp', '确认密码', 'trim|required|matches[pass]');
         $this->form_validation->set_rules('tel', '联系电话', 'trim');
@@ -37,14 +37,13 @@ class Admin extends CI_Controller
             $this->load->view('admin/add', $data);
         } else {
             $this->admin_model->add();
-            redirect('admin');
+            redirect('admin/admin');
         }
     }
 
     public function edit($id)
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('user', '用户名', 'trim|required');
         $this->form_validation->set_rules('tel', '联系电话', 'trim');
         $this->form_validation->set_rules('qq', 'QQ', 'trim');
         $this->form_validation->set_rules('email', '邮箱地址', 'trim|valid_email');
@@ -56,7 +55,7 @@ class Admin extends CI_Controller
             $this->load->view('admin/edit', $data);
         } else {
             $this->admin_model->edit($id);
-            redirect('admin');
+            redirect('admin/admin');
         }
     }
 
@@ -71,7 +70,7 @@ class Admin extends CI_Controller
             $this->load->view('admin/passwd', $data);
         } else {
             $this->admin_model->passwd($id);
-            redirect('admin');
+            redirect('admin/admin');
         }
     }
 
@@ -80,12 +79,6 @@ class Admin extends CI_Controller
         if (1 != $id) {
             $this->admin_model->del($id);
         }
-        redirect('admin');
-    }
-
-    public function logout()
-    {
-        $this->session->unset_userdata('admin');
-        redirect('admin');
+        redirect('admin/admin');
     }
 }
