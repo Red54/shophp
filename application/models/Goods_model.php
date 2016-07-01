@@ -50,22 +50,52 @@ class Goods_model extends CI_Model
         return $this->db->delete('goods', array('id' => $id));
     }
 
-    public function cname()
+    public function cname($id = false)
     {
-        $res = $this->db->get('gcate')->result_array();
-        foreach ($res as $r) {
-            $data[$r['id']] = $r['name'];
+        if ($id === false) {
+            $res = $this->db->get('gcate')->result_array();
+            foreach ($res as $r) {
+                $data[$r['id']] = $r['name'];
+            }
+        } else {
+            $data = $this->db->get_where('gcate', array('pid' => $id))->result_array();
         }
 
         return $data;
     }
 
-    public function get($id = false)
+    public function getcate($id)
+    {
+        $data = array();
+        $res = $this->db->get_where('gcate', array('pid' => $id))->result_array();
+        foreach ($res as $r) {
+            array_push($data, $r['id']);
+            $data = array_merge($data, $this->getcate($r['id']));
+        }
+
+        return $data;
+    }
+
+    public function cget($id)
+    {
+        $data = $this->db->get_where('goods', array('cid' => $id))->result_array();
+        foreach ($this->getcate($id) as $r) {
+            $data = array_merge($data, $this->db->get_where('goods', array('cid' => $r))->result_array());
+        }
+        usort($data, function ($a, $b) {
+            return (new DateTime($b['pubtime']))->getTimestamp() - (new DateTime($a['pubtime']))->getTimestamp();
+        });
+
+        return $data;
+    }
+
+    public function get($id = false, $limit = false)
     {
         if ($id === false) {
             $this->db->select('a.*,b.name as cname');
             $this->db->join('gcate b', 'a.cid = b.id', 'left');
-            $query = $this->db->get('goods a');
+            $this->db->order_by('pubtime', 'DESC');
+            $query = $this->db->get('goods a', $limit);
 
             return $query->result_array();
         }

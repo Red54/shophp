@@ -7,13 +7,11 @@ class Article extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        {
-            $this->load->model('admin_model');
-            if ($this->admin_model->vsession()) {
-                redirect('admin/login');
-            }
-            $this->load->model('article_model');
+        $this->load->model('admin_model');
+        if ($this->admin_model->vsession()) {
+            redirect('admin/login');
         }
+        $this->load->model('article_model');
     }
 
     public function index()

@@ -58,7 +58,7 @@
             <!-- /.container-fluid -->
         </nav>
 		<div class="panel panel-danger">
-		  <div class="panel-heading"><?=$title?> <small>（1号管理员无法被停用或删除）</small><a class="pull-right" href="<?=site_url('admin/admin/add')?>">新建管理员</a></div>
+		  <div class="panel-heading"><?=$title?> <small><?=$subtitle?></small><a class="pull-right" href="<?=site_url('admin/admin/add')?>">新建管理员</a></div>
 		  <table class="table">
 			  <tr>
 				  <th>编号</th>

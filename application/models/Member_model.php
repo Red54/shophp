@@ -7,6 +7,29 @@ class Member_model extends CI_Model
         $this->load->database();
     }
 
+    public function vsession()
+    {
+        $name = array('name' => $this->session->member);
+        $row = $this->db->get_where('member', $name)->row_array();
+        return 1 != $row['status'] || $row['id'] != $this->session->mid;
+    }
+
+    public function vstatus()
+    {
+        $user = array('name' => $this->input->post('name'));
+        $row = $this->db->get_where('member', $name)->row_array();
+        return 1 == $row['status'];
+    }
+
+    public function vpass()
+    {
+        $sha1 = sha1($this->input->post('pass'));
+        $name = array('name' => $this->input->post('name'));
+        $row = $this->db->get_where('member', $name)->row_array();
+
+        return $sha1 == $row['pass'];
+    }
+
     public function add()
     {
         $data = array(

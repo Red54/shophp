@@ -7,13 +7,11 @@ class Member extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        {
-            $this->load->model('admin_model');
-            if ($this->admin_model->vsession()) {
-                redirect('admin/login');
-            }
-            $this->load->model('member_model');
+        $this->load->model('admin_model');
+        if ($this->admin_model->vsession()) {
+            redirect('admin/login');
         }
+        $this->load->model('member_model');
     }
 
     public function index()
@@ -53,6 +51,8 @@ class Member extends CI_Controller
         $this->form_validation->set_rules('tel', '联系电话', 'trim');
         $this->form_validation->set_rules('qq', 'QQ', 'trim');
         $this->form_validation->set_rules('mail', '邮箱', 'trim|valid_email');
+        $this->form_validation->set_rules('address', '联系地址', 'trim');
+        $this->form_validation->set_rules('pcode', '邮政编码', 'trim');
         $this->form_validation->set_rules('status', '状态', 'trim|required');
         if ($this->form_validation->run() === false) {
             $data['title'] = '会员信息';

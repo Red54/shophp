@@ -24,7 +24,7 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -40,47 +40,57 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
+                        <li class="active"><a href="<?=site_url()?>">主页<span class="sr-only">(current)</span></a></li>
+                        <li><a href="<?=site_url('gcate')?>">商品</a></li>
+                        <li><a href="<?=site_url('acate')?>">文章</a></li>
+                        <li><a href="<?=site_url('oform')?>">订单</a></li>
+                        <li><a href="<?=site_url('member')?>">会员</a></li>
                         <li><a href="<?=site_url('admin/admin')?>">管理员</a></li>
-                        <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
-                        <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
-                        <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
-                        <li class="active"><a href="<?=site_url('admin/member')?>">会员<span class="sr-only">(current)</span></a></li>
-                        <li><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
-                        <li><a href="<?=site_url('admin/article')?>">文章</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a><?=$this->session->admin?></a></li>
-                        <li><a href="<?=site_url('admin/logout')?>">退出</a></li>
+						<?php if ($this->member_model->vsession()): ?>
+                        <li><a href="<?=site_url('login')?>">登录</a></li>
+                        <li><a href="<?=site_url('reg')?>">注册</a></li>
+							<?php else: ?>
+                        <li><a><?=$this->session->member?></a></li>
+                        <li><a href="<?=site_url('logout')?>">退出</a></li>
+					<?php endif; ?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            <div class="panel panel-danger">
-                <div class="panel-heading"><?=$title?> <small><?=$subtitle?></small></div>
-                <div class="panel-body">
-                    <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('admin/member/passpt/'.$id)?>
-                            <div class="input-group">
-                                <span class="input-group-addon">密保问题</span>
-                                <input type="input" name="passq" value="<?=set_value('passq', $a['passq'])?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">密保答案</span>
-                                <input type="input" name="passa" value="<?=set_value('passa')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="text-center">
-                                <input class="btn btn-warning" type="submit" value="提交">
-                            </div>
-
-                            </form>
-                </div>
-            </div>
-        </div>
+		<div class="col-sm-12 col-md-6">
+		<div class="panel panel-info">
+		  <div class="panel-heading">最新商品<a class="pull-right" href="<?=site_url('gcate')?>">查看所有</a></div>
+		  <div class="panel-body">
+			  <?php foreach ($goods as $a): ?>
+		  		<div class="col-xs-12 col-sm-6 text-center">
+					<a href="<?=site_url('goods/index/'.$a['id'])?>">
+					<div class="image">
+					<img src="<?=base_url($a['img'])?>" class="img-responsive">
+					</div>
+					<p><?=$a['name']?></p>
+					</a>
+				</div>
+				<?php endforeach; ?>
+		</div>
+		</div>
+		</div>
+		<div class="col-sm-12 col-md-6">
+		<div class="panel panel-success">
+		  <div class="panel-heading">最新文章<a class="pull-right" href="<?=site_url('acate')?>">查看所有</a></div>
+  			<table class="table">
+			  <?php foreach ($article as $a): ?>
+		  		<tr><td><a href="<?=site_url('article/index/'.$a['id'])?>"><?=$a['title']?></a>
+					<span class="pull-right"><?=$a['pubtime']?></span>
+					<div class="well well-sm"><?=$a['abstract']?></div>
+				</td></tr>
+				<?php endforeach; ?>
+  		  	</table>
+		</div>
+		</div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

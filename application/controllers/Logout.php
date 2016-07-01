@@ -7,11 +7,12 @@ class Logout extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->session->unset_userdata('admin');
+        $this->session->unset_userdata('member');
+        $this->session->unset_userdata('mid');
     }
 
     public function index()
     {
-        redirect('admin/admin');
+        redirect();
     }
 }

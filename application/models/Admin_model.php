@@ -11,6 +11,7 @@ class Admin_model extends CI_Model
     {
         $user = array('user' => $this->session->admin);
         $row = $this->db->get_where('admin', $user)->row_array();
+
         return 1 != $row['status'];
     }
 
@@ -18,6 +19,7 @@ class Admin_model extends CI_Model
     {
         $user = array('user' => $this->input->post('user'));
         $row = $this->db->get_where('admin', $user)->row_array();
+
         return 1 == $row['status'];
     }
 
@@ -69,6 +71,10 @@ class Admin_model extends CI_Model
 
     public function del($id)
     {
+        if (1 == $id) {
+            return false;
+        }
+
         return $this->db->delete('admin', array('id' => $id));
     }
 

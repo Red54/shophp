@@ -40,9 +40,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?=site_url('admin/admin')?>">管理员<span class="sr-only">(current)</span></a></li>
+                        <li><a href="<?=site_url('admin/admin')?>">管理员</a></li>
                         <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
-                        <li class="active"><a href="<?=site_url('admin/goods')?>">商品</a></li>
+                        <li class="active"><a href="<?=site_url('admin/goods')?>">商品<span class="sr-only">(current)</span></a></li>
                         <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
                         <li><a href="<?=site_url('admin/member')?>">会员</a></li>
                         <li><a href="<?=site_url('admin/acate')?>">文章类别</a></li>

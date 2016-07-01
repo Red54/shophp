@@ -7,17 +7,16 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        {
-            $this->load->model('admin_model');
-            if ($this->admin_model->vsession()) {
-                redirect('admin/login');
-            }
+        $this->load->model('admin_model');
+        if ($this->admin_model->vsession()) {
+            redirect('admin/login');
         }
     }
 
     public function index()
     {
         $data['title'] = '管理员信息';
+		$data['subtitle'] = '（1号管理员无法被停用或删除）';
         $data['admin'] = $this->admin_model->get();
         $this->load->view('admin/admin/index', $data);
     }
@@ -79,9 +78,6 @@ class Admin extends CI_Controller
 
     public function del($id)
     {
-        if (1 != $id) {
-            $this->admin_model->del($id);
-        }
         redirect('admin/admin');
     }
 }

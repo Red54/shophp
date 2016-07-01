@@ -38,22 +38,52 @@ class Article_model extends CI_Model
         return $this->db->delete('article', array('id' => $id));
     }
 
-    public function cname()
+    public function cname($id = false)
     {
-        $res = $this->db->get('acate')->result_array();
-        foreach ($res as $r) {
+        if ($id === false) {
+            $res = $this->db->get('acate')->result_array();
+            foreach ($res as $r) {
                 $data[$r['id']] = $r['name'];
+            }
+        } else {
+            $data = $this->db->get_where('acate', array('pid' => $id))->result_array();
         }
 
         return $data;
     }
 
-    public function get($id = false)
+    public function getcate($id)
+    {
+        $data = array();
+        $res = $this->db->get_where('acate', array('pid' => $id))->result_array();
+        foreach ($res as $r) {
+            array_push($data, $r['id']);
+            $data = array_merge($data, $this->getcate($r['id']));
+        }
+
+        return $data;
+    }
+
+    public function cget($id)
+    {
+        $data = $this->db->get_where('article', array('cid' => $id))->result_array();
+        foreach ($this->getcate($id) as $r) {
+            $data = array_merge($data, $this->db->get_where('article', array('cid' => $r))->result_array());
+        }
+        usort($data, function ($a, $b) {
+            return (new DateTime($b['pubtime']))->getTimestamp() - (new DateTime($a['pubtime']))->getTimestamp();
+        });
+
+        return $data;
+    }
+
+    public function get($id = false, $limit = false)
     {
         if ($id === false) {
             $this->db->select('a.*,b.name');
             $this->db->join('acate b', 'a.cid = b.id', 'left');
-            $query = $this->db->get('article a');
+            $this->db->order_by('pubtime', 'DESC');
+            $query = $this->db->get('article a', $limit);
 
             return $query->result_array();
         }
