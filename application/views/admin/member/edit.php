@@ -70,36 +70,35 @@
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">联系电话</span>
-                                <input type="input" name="tel" value="<?=set_value('tel') ? set_value('tel') : $a['tel']?>" class="form-control">
+                                <input type="input" name="tel" value="<?=set_value('tel', $a['tel'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">QQ</span>
-                                <input type="input" name="qq" value="<?=set_value('qq') ? set_value('qq') : $a['qq']?>" class="form-control">
+                                <input type="input" name="qq" value="<?=set_value('qq', $a['qq'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">邮箱</span>
-                                <input type="input" name="mail" value="<?=set_value('mail') ? set_value('mail') : $a['mail']?>" class="form-control">
+                                <input type="input" name="mail" value="<?=set_value('mail', $a['mail'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">联系地址</span>
-                                <input type="input" name="address" value="<?=set_value('address') ? set_value('address') : $a['address']?>" class="form-control">
+                                <input type="input" name="address" value="<?=set_value('address', $a['address'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">邮政编码</span>
-                                <input type="input" name="pcode" value="<?=set_value('pcode') ? set_value('pcode') : $a['pcode']?>" class="form-control">
+                                <input type="input" name="pcode" value="<?=set_value('pcode', $a['pcode'])?>" class="form-control">
                             </div>
                             <div class="text-center">
                                 <div class="radio">
-                                    <?php $status = NULL != set_value('status') ? set_value('status') : $a['status'];?>
                                     <label>
-                                        <input type="radio" name="status" value="1" <?php if (1==$status) { echo 'checked'; }?>> 正常
+                                        <input type="radio" name="status" value="1" <?php if (1==set_value('status', $a['status'])) { echo 'checked'; }?>> 正常
                                     </label>
                                     <label>
-                                        <input type="radio" name="status" value="0" <?php if (0==$status) { echo 'checked'; }?>> 冻结
+                                        <input type="radio" name="status" value="0" <?php if (0==set_value('status', $a['status'])) { echo 'checked'; }?>> 冻结
                                     </label>
                                 </div>
                                 <input class="btn btn-warning" type="submit" value="提交">

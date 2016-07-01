@@ -41,8 +41,8 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?=site_url('admin/admin')?>">管理员<span class="sr-only">(current)</span></a></li>
-                        <li class="active"><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
-                        <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
+                        <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
+                        <li class="active"><a href="<?=site_url('admin/goods')?>">商品</a></li>
                         <li><a href="<?=site_url('admin/oform')?>">订单</a></li>
                         <li><a href="<?=site_url('admin/member')?>">会员</a></li>
                         <li><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
@@ -57,35 +57,43 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            <div class="panel panel-danger">
-                <div class="panel-heading"><?=$title?> <small><?=$subtitle?></small></div>
-                <div class="panel-body">
-                    <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('admin/gcate/edit/'.$id)?>
-                            <div class="input-group">
-                                <span class="input-group-addon">父级类别</span>
-								<?=form_dropdown('pid', $pname, set_value('pid', $a['pid']), 'class="form-control"')?>
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">类别名称</span>
-                                <input type="input" name="name" value="<?=set_value('name', $a['name'])?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">类别简介</span>
-                                <input type="input" name="intro" value="<?=set_value('intro', $a['intro'])?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="text-center">
-                                <input class="btn btn-warning" type="submit" value="提交">
-                            </div>
-
-                            </form>
-                </div>
-            </div>
-        </div>
+		<div class="panel panel-danger">
+		  <div class="panel-heading"><?=$title?></small><a class="pull-right" href="<?=site_url('admin/goods/add')?>">新增商品</a></div>
+		  <table class="table">
+			  <tr>
+				  <th>编号</th>
+				  <th>类别</th>
+				  <th>名称</th>
+				  <th>规格</th>
+				  <th>图片</th>
+				  <th>品牌</th>
+				  <th>市场价</th>
+				  <th>商城价</th>
+				  <th>库存量</th>
+				  <th>发布时间</th>
+				  <th>状态</th>
+				  <th>编辑</th>
+				  <th>删除</th>
+			  </tr>
+			  <?php foreach ($goods as $a): ?>
+				  <tr>
+					  <td><?=$a['id']?></td>
+					  <td><?=$a['cname']?></td>
+					  <td><?=$a['name']?></td>
+					  <td><?=$a['spec']?></td>
+					  <td><img src="<?=base_url($a['img'])?>" class="smallimg"></td>
+					  <td><?=$a['brand']?></td>
+					  <td><?=$a['mprice']?></td>
+					  <td><?=$a['sprice']?></td>
+					  <td><?=$a['stocks']?></td>
+					  <td><?=$a['pubtime']?></td>
+					  <td><?php if (1 == $a['status']) echo '上架'; else echo '下架';?></td>
+					  <td><a href="<?=site_url('admin/goods/edit/'.$a['id'])?>">编辑</a></td>
+					  <td><a href="<?=site_url('admin/goods/del/'.$a['id'])?>" onclick="return confirm('您确认要删除此商品吗？')">删除</a></td>
+				  </tr>
+				  <?php endforeach; ?>
+		  </table>
+		</div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

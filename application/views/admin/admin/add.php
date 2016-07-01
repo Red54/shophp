@@ -94,12 +94,11 @@
                             </div>
                             <div class="text-center">
                                 <div class="radio">
-                                    <?php $status = NULL != set_value('status') ? set_value('status') : 1;?>
                                     <label>
-                                        <input type="radio" name="status" value="1" <?php if (1==$status) { echo 'checked'; }?>> 启用
+                                        <input type="radio" name="status" value="1" <?php if (1==set_value('status', 1)) { echo 'checked'; }?>> 启用
                                     </label>
                                     <label>
-                                        <input type="radio" name="status" value="0" <?php if (0==$status) { echo 'checked'; }?>> 停用
+                                        <input type="radio" name="status" value="0" <?php if (0==set_value('status', 1)) { echo 'checked'; }?>> 停用
                                     </label>
                                 </div>
                                 <input class="btn btn-warning" type="submit" value="提交">

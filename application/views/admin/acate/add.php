@@ -65,7 +65,7 @@
                         <?=form_open('admin/acate/add')?>
                             <div class="input-group">
                                 <span class="input-group-addon">父级类别</span>
-								<?=form_dropdown('pid', $pname, 0, 'class="form-control"')?>
+								<?=form_dropdown('pid', $pname, set_value('pid', 0), 'class="form-control"')?>
                             </div>
                             <br />
                             <div class="input-group">

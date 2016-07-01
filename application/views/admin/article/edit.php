@@ -69,35 +69,30 @@
                             <input type="hidden" name="content" id="content">
                             <div class="input-group">
                                 <span class="input-group-addon">类别</span>
-                                <?=form_dropdown('cid', $cname, $a['cid'], 'class="form-control"')?>
+                                <?=form_dropdown('cid', $cname, set_value('cid', $a['cid']), 'class="form-control"')?>
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">标题</span>
-                                <input type="input" name="title" value="<?=set_value('title') ? set_value('title') : $a['title']?>" class="form-control">
+                                <input type="input" name="title" value="<?=set_value('title', $a['title'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">摘要</span>
-                                <div contentEditable="true" id="abstractdiv" class="form-control">
-                                    <?=set_value('abstract') ? set_value('abstract') : $a['abstract']?>
-                                </div>
+                                <div contentEditable="true" id="abstractdiv" class="form-control"><?=set_value('abstract', $a['abstract'], false)?></div>
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">内容</span>
-                                <div contentEditable="true" id="contentdiv" class="form-control">
-                                    <?=set_value('content') ? set_value('content') : $a['content']?>
-                                </div>
+                                <div contentEditable="true" id="contentdiv" class="form-control"><?=set_value('content', $a['content'], false)?></div>
                             </div>
                             <div class="text-center">
                                 <div class="radio">
-                                    <?php $status = null != set_value('status') ? set_value('status') : $a['status'];?>
                                     <label>
-                                        <input type="radio" name="status" value="1" <?php if (1==$status) { echo 'checked'; }?>> 发布
+                                        <input type="radio" name="status" value="1" <?php if (1==set_value('status', $a['status'])) { echo 'checked'; }?>> 发布
                                     </label>
                                     <label>
-                                        <input type="radio" name="status" value="0" <?php if (0==$status) { echo 'checked'; }?>> 撤回
+                                        <input type="radio" name="status" value="0" <?php if (0==set_value('status', $a['status'])) { echo 'checked'; }?>> 撤回
                                     </label>
                                 </div>
                                 <input class="btn btn-warning" type="submit" value="提交">

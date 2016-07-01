@@ -70,26 +70,25 @@
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">联系电话</span>
-                                <input type="input" name="tel" value="<?=set_value('tel') ? set_value('tel') : $a['tel']?>" class="form-control">
+                                <input type="input" name="tel" value="<?=set_value('tel', $a['tel'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">QQ</span>
-                                <input type="input" name="qq" value="<?=set_value('qq') ? set_value('qq') : $a['qq']?>" class="form-control">
+                                <input type="input" name="qq" value="<?=set_value('qq', $a['qq'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">邮箱地址</span>
-                                <input type="input" name="email" value="<?=set_value('email') ? set_value('email') : $a['email']?>" class="form-control">
+                                <input type="input" name="email" value="<?=set_value('email', $a['email'])?>" class="form-control">
                             </div>
                             <div class="text-center">
                                 <div class="radio">
-                                    <?php $status = NULL != set_value('status') ? set_value('status') : $a['status'];?>
                                     <label>
-                                        <input type="radio" name="status" value="1" <?php if (1==$status) { echo 'checked'; }?>> 启用
+                                        <input type="radio" name="status" value="1" <?php if (1==set_value('status', $a['status'])) { echo 'checked'; }?>> 启用
                                     </label>
                                     <label>
-                                        <input type="radio" name="status" value="0" <?php if (0==$status) { echo 'checked'; }?>> 停用
+                                        <input type="radio" name="status" value="0" <?php if (0==set_value('status', $a['status'])) { echo 'checked'; }?>> 停用
                                     </label>
                                 </div>
                                 <input class="btn btn-warning" type="submit" value="提交">

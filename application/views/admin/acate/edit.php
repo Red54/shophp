@@ -65,17 +65,17 @@
                         <?=form_open('admin/acate/edit/'.$id)?>
                             <div class="input-group">
                                 <span class="input-group-addon">父级类别</span>
-								<?=form_dropdown('pid', $pname, $a['pid'], 'class="form-control"')?>
+								<?=form_dropdown('pid', $pname, set_value('pid', $a['pid']), 'class="form-control"')?>
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">类别名称</span>
-                                <input type="input" name="name" value="<?=set_value('name') ? set_value('name') : $a['name']?>" class="form-control">
+                                <input type="input" name="name" value="<?=set_value('name', $a['name'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
                                 <span class="input-group-addon">类别简介</span>
-                                <input type="input" name="intro" value="<?=set_value('intro') ? set_value('intro') : $a['intro']?>" class="form-control">
+                                <input type="input" name="intro" value="<?=set_value('intro', $a['intro'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="text-center">

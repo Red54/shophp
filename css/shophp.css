@@ -4,4 +4,9 @@
 [contenteditable].form-control {
     height: initial;
     min-height: 54px;
+    white-space: pre-wrap;
+}
+.smallimg {
+    max-width: 100px;
+    max-height: 100px;
 }

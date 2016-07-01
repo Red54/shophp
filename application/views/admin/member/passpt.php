@@ -65,7 +65,7 @@
                         <?=form_open('admin/member/passpt/'.$id)?>
                             <div class="input-group">
                                 <span class="input-group-addon">密保问题</span>
-                                <input type="input" name="passq" value="<?=set_value('passq') ? set_value('passq') : $a['passq']?>" class="form-control">
+                                <input type="input" name="passq" value="<?=set_value('passq', $a['passq'])?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
