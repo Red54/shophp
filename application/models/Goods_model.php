@@ -103,4 +103,11 @@ class Goods_model extends CI_Model
 
         return $query->row_array();
     }
+
+    public function view($id)
+    {
+        $this->db->set('views','views + 1', FALSE);
+
+        return $this->db->update('goods', NULL, array('id' => $id));
+    }
 }

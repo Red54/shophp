@@ -41,7 +41,7 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?=site_url()?>">主页</a></li>
-                        <li><a href="<?=site_url('gcate')?>">商品</a></li>
+                        <li class="active"><a href="<?=site_url('gcate')?>">商品<span class="sr-only">(current)</span></a></li>
                         <li><a href="<?=site_url('acate')?>">文章</a></li>
                         <li><a href="<?=site_url('oform')?>">订单</a></li>
                         <li><a href="<?=site_url('member')?>">会员</a></li>
@@ -49,41 +49,79 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="<?=site_url('cart')?>">购物车</a></li>
-                        <li class="active"><a href="<?=site_url('login')?>">登录<span class="sr-only">(current)</span></a></li>
+						<?php if ($this->member_model->vsession()): ?>
+                        <li><a href="<?=site_url('login')?>">登录</a></li>
                         <li><a href="<?=site_url('reg')?>">注册</a></li>
+							<?php else: ?>
+                        <li><a><?=$this->session->member?></a></li>
+                        <li><a href="<?=site_url('logout')?>">退出</a></li>
+					<?php endif; ?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            <br />
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <div class="text-center panel-title"><?=$this->config->item('title')?> <?=$title?></div>
-                </div>
-                <div class="panel-body">
+        	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+		<div class="panel panel-info">
+		  <div class="panel-heading">
+                    <div class="text-center panel-title"><?=$title?></div>
+		  </div>
+ 		 <ul class="list-group">
+		   <li class="list-group-item">
+				<div class="text-center">
+                   <a href="<?=site_url('acate/index/'.$cid)?>"><?=$cname?></a>
+                   <?=$a['pubtime']?>
+					访问量:<?=$a['views']?>
+				</div>
+			</li>
+		</ul>
+        <div class="panel-body">
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('login')?>
-                            <div class="input-group">
-                                <span class="input-group-addon">会员</span>
-                                <input type="input" name="name" id="name" value="<?=set_value('name')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">密码</span>
-                                <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="text-center">
-                                <input class="btn btn-warning" type="submit" value="登录">
-								<a href="<?=site_url('reg')?>" class="btn btn-danger">注册</a>
-                            </div>
-                        </form>
-                </div>
-            </div>
-        </div>
+                        <?=form_open('goods/index/'.$id)?>
+			<div class="col-lg-6">
+				<div class="image">
+					<img src="<?=base_url($a['img'])?>" class="img-responsive center-block">
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="col-xs-6 col-lg-12">
+				<S><h5>市场价：<?=$a['mprice']?></h5></S>
+				</div>
+				<div class="col-xs-6 col-lg-12">
+				<h5>商城价：<?=$a['sprice']?></h5>
+				</div>
+				<div class="col-xs-6 col-lg-12">
+				<h5>销售量：<?=$a['sales']?></h5>
+				</div>
+				<div class="col-xs-6 col-lg-12">
+				<h5>库存量：<?=$a['stocks']?></h5>
+				</div>
+				<div class="col-xs-6 col-lg-12">
+                            <p class="input-group">
+                                <span class="input-group-addon input-group-addon-sm">数量</span>
+                                <input type="input" name="num" value="<?=set_value('num', 1)?>" class="form-control">
+                            </p>
+				</div>
+				<div class="col-xs-6 col-lg-12">
+                                <input class="btn btn-primary" type="submit" value="加入购物车">
+				</div>
+			</div>
+             </div>
+			 <table class="table">
+				 <tr>
+				 <th>规格</th>
+				 <td><?=$a['spec']?></td>
+				 <th>品牌</th>
+				 <td><?=$a['brand']?></td>
+			 </tr>
+			 </table>
+        <div class="panel-body">
+                    <?=$a['intro']?>
+             </div>
+                            </form>
+		</div>
+		</div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

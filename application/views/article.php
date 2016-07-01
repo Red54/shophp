@@ -48,6 +48,7 @@
                         <li><a href="<?=site_url('admin/admin')?>">管理员</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="<?=site_url('cart')?>">购物车</a></li>
 						<?php if ($this->member_model->vsession()): ?>
                         <li><a href="<?=site_url('login')?>">登录</a></li>
                         <li><a href="<?=site_url('reg')?>">注册</a></li>
@@ -64,13 +65,14 @@
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 		<div class="panel panel-success">
 		  <div class="panel-heading">
-                    <div class="text-center panel-title"><?=$this->config->item('title')?> <?=$title?></div>
+                    <div class="text-center panel-title"><?=$title?></div>
 		  </div>
  				   <ul class="list-group">
 					   <li class="list-group-item">
 					<div class="text-center">
                             <a href="<?=site_url('acate/index/'.$cid)?>"><?=$cname?></a>
                             <?=$a['pubtime']?>
+							访问量:<?=$a['views']?>
 						</div>
 						</li>
 					</ul>

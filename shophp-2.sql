@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 01, 2016 at 07:25 PM
+-- Generation Time: Jul 01, 2016 at 11:38 PM
 -- Server version: 10.1.14-MariaDB
 -- PHP Version: 7.0.8
 
@@ -90,9 +90,9 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`id`, `cid`, `title`, `abstract`, `content`, `views`, `pubtime`, `status`) VALUES
-(1, 3, '小米加步枪买二送一啦！！', '小米加步枪（小型米加粒子步枪，Compact Mega Particle Rifle）买二送一啦！！', '土共核心科技！土共核心科技！大东亚决战兵器！大东亚决战兵器！小米加步枪！小米加步枪！买二送一啦！买二送一啦！<br><br>小米加步枪（小型米加粒子步枪，Compact Mega Particle Rifle），一种在八年战争阶段，通过未知技术渠道被秘密发展出来的强大小型单兵可携带米加粒子武器。敌后根据地的技术工程师们很巧妙的将从微型核聚变反应炉以及米诺夫斯基粒子冷凝器内置在枪托内，并使用现役步枪的外观进行改造，比如最常见的三八式步枪、中正式步枪，甚至还有很罕见的汉阳造外观改装型。紧凑的设计以及伪装外观，在取得非常优异人机工学的同时，还非常隐蔽，很具有欺骗性，经常达到出奇制胜的效果。<br><br>如今这款土共核心科技，大东亚决战兵器，小米加步枪，买二送一了！！机不可失，失不再来！买了不吃亏，买了不上当！', 0, '2016-07-01 02:07:46', 1),
-(2, 4, 'K隆星功能饮料“赤汁”上市！！', 'K隆星功能饮料“赤汁”上市！！', 'K隆星功能饮料“赤汁”上市！！<br><br>“赤汁”，由战斗必须的营养植物混合提取的功能饮料，很难喝但会上瘾，战场上的红魔鬼Giroro亲自代言！', 0, '2016-07-01 02:11:50', 1),
-(3, 5, '元首御用便携式超级计算机上市啦！！', '元首御用便携式超级计算机上市啦！！<br>', '元首御用便携式超级计算机上市啦！！<br><br>德国谷科荣誉出品！！<br><br>德国谷科世界第一！！', 0, '2016-07-01 02:47:03', 1);
+(1, 3, '小米加步枪买二送一啦！！', '小米加步枪（小型米加粒子步枪，Compact Mega Particle Rifle）买二送一啦！！', '土共核心科技！土共核心科技！大东亚决战兵器！大东亚决战兵器！小米加步枪！小米加步枪！买二送一啦！买二送一啦！<br><br>小米加步枪（小型米加粒子步枪，Compact Mega Particle Rifle），一种在八年战争阶段，通过未知技术渠道被秘密发展出来的强大小型单兵可携带米加粒子武器。敌后根据地的技术工程师们很巧妙的将从微型核聚变反应炉以及米诺夫斯基粒子冷凝器内置在枪托内，并使用现役步枪的外观进行改造，比如最常见的三八式步枪、中正式步枪，甚至还有很罕见的汉阳造外观改装型。紧凑的设计以及伪装外观，在取得非常优异人机工学的同时，还非常隐蔽，很具有欺骗性，经常达到出奇制胜的效果。<br><br>如今这款土共核心科技，大东亚决战兵器，小米加步枪，买二送一了！！机不可失，失不再来！买了不吃亏，买了不上当！', 4, '2016-07-01 02:07:46', 1),
+(2, 4, 'K隆星功能饮料“赤汁”上市！！', 'K隆星功能饮料“赤汁”上市！！', 'K隆星功能饮料“赤汁”上市！！<br><br>“赤汁”，由战斗必须的营养植物混合提取的功能饮料，很难喝但会上瘾，战场上的红魔鬼Giroro亲自代言！', 3, '2016-07-01 02:11:50', 1),
+(3, 5, '元首御用便携式超级计算机上市啦！！', '元首御用便携式超级计算机上市啦！！<br>', '元首御用便携式超级计算机上市啦！！<br><br>德国谷科荣誉出品！！<br><br>德国谷科世界第一！！', 15, '2016-07-01 02:47:03', 1);
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ CREATE TABLE `goods` (
   `brand` varchar(50) NOT NULL COMMENT '品牌',
   `mprice` float NOT NULL COMMENT '市场价',
   `sprice` float NOT NULL COMMENT '商城价',
-  `sales` int(11) NOT NULL COMMENT '销售量',
+  `sales` int(11) NOT NULL DEFAULT '0' COMMENT '销售量',
   `stocks` int(11) NOT NULL COMMENT '库存量',
   `views` int(11) NOT NULL DEFAULT '0' COMMENT '访问量',
   `pubtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
@@ -146,9 +146,9 @@ CREATE TABLE `goods` (
 --
 
 INSERT INTO `goods` (`id`, `cid`, `name`, `spec`, `img`, `intro`, `brand`, `mprice`, `sprice`, `sales`, `stocks`, `views`, `pubtime`, `status`) VALUES
-(1, 3, '小米加步枪', '紧凑型', 'uploads/cmpr.jpg', '小米加步枪（小型米加粒子步枪，Compact Mega Particle Rifle），一种在八年战争阶段，通过未知技术渠道被秘密发展出来的强大小型单兵可携带米加粒子武器。敌后根据地的技术工程师们很巧妙的将从微型核聚变反应炉以及米诺夫斯基粒子冷凝器内置在枪托内，并使用现役步枪的外观进行改造，比如最常见的三八式步枪、中正式步枪，甚至还有很罕见的汉阳造外观改装型。紧凑的设计以及伪装外观，在取得非常优异人机工学的同时，还非常隐蔽，很具有欺骗性，经常达到出奇制胜的效果。', '土共', 1000000, 999999, 0, 50, 0, '2016-07-01 11:46:55', 1),
-(2, 5, '元首御用便携式超级计算机', '御用型', 'uploads/laptop.jpg', '元首御用便携式超级计算机上市啦！！<br><br>德国谷科荣誉出品！！<br><br>德国谷科世界第一！！', '德国谷科', 800000, 600000, 0, 10, 0, '2016-07-01 11:48:32', 1),
-(3, 4, 'K隆星功能饮料“赤汁”', '易拉罐型', 'uploads/redwater.jpg', '“赤汁”，由战斗必须的营养植物混合提取的功能饮料，很难喝但会上瘾，战场上的红魔鬼Giroro亲自代言！', 'K隆山', 500, 450, 0, 1000, 0, '2016-07-01 11:50:10', 1);
+(1, 3, '小米加步枪', '紧凑型', 'uploads/cmpr.jpg', '小米加步枪（小型米加粒子步枪，Compact Mega Particle Rifle），一种在八年战争阶段，通过未知技术渠道被秘密发展出来的强大小型单兵可携带米加粒子武器。敌后根据地的技术工程师们很巧妙的将从微型核聚变反应炉以及米诺夫斯基粒子冷凝器内置在枪托内，并使用现役步枪的外观进行改造，比如最常见的三八式步枪、中正式步枪，甚至还有很罕见的汉阳造外观改装型。紧凑的设计以及伪装外观，在取得非常优异人机工学的同时，还非常隐蔽，很具有欺骗性，经常达到出奇制胜的效果。', '土共', 1000000, 999999, 0, 50, 54, '2016-07-01 11:46:55', 1),
+(2, 5, '元首御用便携式超级计算机', '御用型', 'uploads/laptop.jpg', '元首御用便携式超级计算机上市啦！！<br><br>德国谷科荣誉出品！！<br><br>德国谷科世界第一！！', '德国谷科', 800000, 600000, 0, 10, 20, '2016-07-01 11:48:32', 1),
+(3, 4, 'K隆星功能饮料“赤汁”', '易拉罐型', 'uploads/redwater.jpg', '“赤汁”，由战斗必须的营养植物混合提取的功能饮料，很难喝但会上瘾，战场上的红魔鬼Giroro亲自代言！', 'K隆山', 500, 450, 0, 1000, 68, '2016-07-01 11:50:10', 1);
 
 -- --------------------------------------------------------
 
@@ -189,7 +189,6 @@ INSERT INTO `member` (`id`, `name`, `pass`, `passq`, `passa`, `tel`, `qq`, `mail
 
 CREATE TABLE `oform` (
   `id` int(11) NOT NULL COMMENT '订单编号',
-  `num` varchar(20) NOT NULL COMMENT '订单号',
   `mname` varchar(20) NOT NULL COMMENT '会员名',
   `quantity` int(11) NOT NULL COMMENT '商品数量',
   `amount` float NOT NULL COMMENT '消费金额',
@@ -197,10 +196,17 @@ CREATE TABLE `oform` (
   `address` varchar(300) NOT NULL COMMENT '收货地址',
   `tel` varchar(20) NOT NULL COMMENT '联系电话',
   `pmethod` int(11) NOT NULL COMMENT '付款方式',
-  `ordate` date NOT NULL COMMENT '订单日期',
+  `ordate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '订单日期',
   `status` int(11) NOT NULL COMMENT '订单状态',
   `note` text NOT NULL COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单信息表';
+
+--
+-- Dumping data for table `oform`
+--
+
+INSERT INTO `oform` (`id`, `mname`, `quantity`, `amount`, `receiver`, `address`, `tel`, `pmethod`, `ordate`, `status`, `note`) VALUES
+(1, 'someone', 2, 5600000, '赵日天', 'Matrix', '09876543210', 0, '2016-07-02 07:38:06', 0, '');
 
 -- --------------------------------------------------------
 
@@ -210,13 +216,21 @@ CREATE TABLE `oform` (
 
 CREATE TABLE `ogoods` (
   `id` int(11) NOT NULL COMMENT '编号',
-  `onum` varchar(20) NOT NULL COMMENT '订单号',
+  `oid` int(11) NOT NULL COMMENT '订单号',
   `gid` int(11) NOT NULL COMMENT '商品编号',
   `price` int(11) NOT NULL COMMENT '单价',
   `quantity` int(11) NOT NULL COMMENT '数量',
   `discount` int(11) NOT NULL COMMENT '折扣',
   `subtotal` int(11) NOT NULL COMMENT '小计价格'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单商品信息表';
+
+--
+-- Dumping data for table `ogoods`
+--
+
+INSERT INTO `ogoods` (`id`, `oid`, `gid`, `price`, `quantity`, `discount`, `subtotal`) VALUES
+(1, 1, 2, 600000, 1, 1, 600000),
+(2, 1, 1, 999999, 5, 1, 4999995);
 
 --
 -- Indexes for dumped tables
@@ -269,7 +283,6 @@ ALTER TABLE `member`
 --
 ALTER TABLE `oform`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `num` (`num`) USING BTREE,
   ADD KEY `mname` (`mname`) USING BTREE;
 
 --
@@ -277,7 +290,7 @@ ALTER TABLE `oform`
 --
 ALTER TABLE `ogoods`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `onum` (`onum`),
+  ADD KEY `oid` (`oid`) USING BTREE,
   ADD KEY `gid` (`gid`) USING BTREE;
 
 --
@@ -318,12 +331,12 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `oform`
 --
 ALTER TABLE `oform`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单编号';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单编号', AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `ogoods`
 --
 ALTER TABLE `ogoods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号', AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
@@ -350,7 +363,7 @@ ALTER TABLE `oform`
 -- Constraints for table `ogoods`
 --
 ALTER TABLE `ogoods`
-  ADD CONSTRAINT `ogoods_ibfk_1` FOREIGN KEY (`onum`) REFERENCES `oform` (`num`),
+  ADD CONSTRAINT `ogoods_ibfk_1` FOREIGN KEY (`oid`) REFERENCES `oform` (`id`),
   ADD CONSTRAINT `ogoods_ibfk_2` FOREIGN KEY (`gid`) REFERENCES `goods` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

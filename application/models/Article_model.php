@@ -91,4 +91,11 @@ class Article_model extends CI_Model
 
         return $query->row_array();
     }
+
+    public function view($id)
+    {
+        $this->db->set('views','views + 1', FALSE);
+
+        return $this->db->update('article', NULL, array('id' => $id));
+    }
 }

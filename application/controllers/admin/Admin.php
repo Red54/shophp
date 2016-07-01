@@ -78,6 +78,7 @@ class Admin extends CI_Controller
 
     public function del($id)
     {
+        $this->admin_model->del($id);
         redirect('admin/admin');
     }
 }

@@ -24,7 +24,7 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -40,50 +40,58 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?=site_url()?>">主页</a></li>
-                        <li><a href="<?=site_url('gcate')?>">商品</a></li>
-                        <li><a href="<?=site_url('acate')?>">文章</a></li>
-                        <li><a href="<?=site_url('oform')?>">订单</a></li>
-                        <li><a href="<?=site_url('member')?>">会员</a></li>
                         <li><a href="<?=site_url('admin/admin')?>">管理员</a></li>
+                        <li><a href="<?=site_url('admin/gcate')?>">商品类别</a></li>
+                        <li><a href="<?=site_url('admin/goods')?>">商品</a></li>
+                        <li class="active"><a href="<?=site_url('admin/oform')?>">订单<span class="sr-only">(current)</span></a></li>
+                        <li><a href="<?=site_url('admin/member')?>">会员</a></li>
+                        <li><a href="<?=site_url('admin/acate')?>">文章类别</a></li>
+                        <li><a href="<?=site_url('admin/article')?>">文章</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<?=site_url('cart')?>">购物车</a></li>
-                        <li class="active"><a href="<?=site_url('login')?>">登录<span class="sr-only">(current)</span></a></li>
-                        <li><a href="<?=site_url('reg')?>">注册</a></li>
+                        <li><a><?=$this->session->admin?></a></li>
+                        <li><a href="<?=site_url('admin/logout')?>">退出</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            <br />
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <div class="text-center panel-title"><?=$this->config->item('title')?> <?=$title?></div>
-                </div>
-                <div class="panel-body">
-                    <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('login')?>
-                            <div class="input-group">
-                                <span class="input-group-addon">会员</span>
-                                <input type="input" name="name" id="name" value="<?=set_value('name')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">密码</span>
-                                <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="text-center">
-                                <input class="btn btn-warning" type="submit" value="登录">
-								<a href="<?=site_url('reg')?>" class="btn btn-danger">注册</a>
-                            </div>
-                        </form>
-                </div>
-            </div>
-        </div>
+		<div class="panel panel-danger">
+		  <div class="panel-heading"><?=$title?></div>
+		  <table class="table">
+			  <tr>
+				  <th>编号</th>
+				  <th>会员名</th>
+				  <th>商品数量</th>
+				  <th>消费金额</th>
+				  <th>收货人</th>
+				  <th>收货地址</th>
+				  <th>联系电话</th>
+				  <th>付款方式</th>
+				  <th>订单日期</th>
+				  <th>状态</th>
+				  <th>查看</th>
+				  <th>删除</th>
+			  </tr>
+			  <?php foreach ($oform as $a): ?>
+				  <tr>
+					  <td><?=$a['id']?></td>
+					  <td><?=$a['mname']?></td>
+					  <td><?=$a['quantity']?></td>
+					  <td><?=$a['amount']?></td>
+					  <td><?=$a['receiver']?></td>
+					  <td><?=$a['address']?></td>
+					  <td><?=$a['tel']?></td>
+					  <td><?php if (0 == $a['pmethod']) echo '意念支付';?></td>
+					  <td><?=$a['ordate']?></td>
+					  <td><?php if (1 == $a['status']) echo '已支付'; else echo '未支付';?></td>
+					  <td><a href="<?=site_url('admin/oform/ogoods/'.$a['id'])?>">查看</a></td>
+					  <td><a href="<?=site_url('admin/oform/del/'.$a['id'])?>" onclick="return confirm('您确认要删除此订单吗？')">删除</a></td>
+				  </tr>
+				  <?php endforeach; ?>
+		  </table>
+		</div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

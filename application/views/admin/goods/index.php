@@ -83,7 +83,7 @@
 					  <td><?=$a['spec']?></td>
 					  <td><img src="<?=base_url($a['img'])?>" class="smallimg"></td>
 					  <td><?=$a['brand']?></td>
-					  <td><?=$a['mprice']?></td>
+					  <td><S><?=$a['mprice']?></S></td>
 					  <td><?=$a['sprice']?></td>
 					  <td><?=$a['stocks']?></td>
 					  <td><?=$a['pubtime']?></td>

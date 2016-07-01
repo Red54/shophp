@@ -48,42 +48,61 @@
                         <li><a href="<?=site_url('admin/admin')?>">管理员</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<?=site_url('cart')?>">购物车</a></li>
-                        <li class="active"><a href="<?=site_url('login')?>">登录<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="<?=site_url('cart')?>">购物车<span class="sr-only">(current)</span></a></li>
+						<?php if ($this->member_model->vsession()): ?>
+                        <li><a href="<?=site_url('login')?>">登录</a></li>
                         <li><a href="<?=site_url('reg')?>">注册</a></li>
+							<?php else: ?>
+                        <li><a><?=$this->session->member?></a></li>
+                        <li><a href="<?=site_url('logout')?>">退出</a></li>
+					<?php endif; ?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            <br />
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <div class="text-center panel-title"><?=$this->config->item('title')?> <?=$title?></div>
-                </div>
-                <div class="panel-body">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+                    <div class="text-center panel-title"><?=$title?></div>
+		  </div>
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('login')?>
-                            <div class="input-group">
-                                <span class="input-group-addon">会员</span>
-                                <input type="input" name="name" id="name" value="<?=set_value('name')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">密码</span>
-                                <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="text-center">
-                                <input class="btn btn-warning" type="submit" value="登录">
-								<a href="<?=site_url('reg')?>" class="btn btn-danger">注册</a>
-                            </div>
-                        </form>
-                </div>
-            </div>
-        </div>
+		  <table class="table">
+			  <tr>
+				  <th>名称</th>
+				  <th>图片</th>
+				  <th>市场价</th>
+				  <th>商城价</th>
+				  <th>库存量</th>
+				  <th>数量</th>
+				  <th>编辑</th>
+				  <th>删除</th>
+			  </tr>
+			  <?php foreach ($goods as $a): ?>
+                  <?=form_open('cart/edit/'.$a['id'])?>
+				  <tr>
+					  <td><?=$a['name']?></td>
+					  <td><img src="<?=base_url($a['img'])?>" class="smallimg"></td>
+					  <td><S><?=$a['mprice']?></S></td>
+					  <td><?=$a['sprice']?></td>
+					  <td><?=$a['stocks']?></td>
+					  <td><input type="input" name="num" value="<?=set_value('num', $a['num'])?>" class="form-control"></td>
+					  <td><input class="btn btn-info" type="submit" value="编辑"></td>
+					  <td><a href="<?=site_url('cart/del/'.$a['id'])?>" class="btn btn-success" onclick="return confirm('您确认要删除此商品吗？')">删除</a></td>
+				  </tr>
+                  </form>
+				  <?php endforeach; ?>
+		  </table>
+          <div class="panel-body">
+			  <div class="pull-right">
+			  共计：<?=$total?>
+			  
+			  <a href="<?=site_url('oform/commit')?>" class="btn btn-warning" onclick="return confirm('您确认要提交订单吗？')">提交</a>
+			  
+			  <a href="<?=site_url('cart/empty')?>" class="btn btn-danger" onclick="return confirm('您确认要清空购物车吗？')">清空</a>
+		  </div>
+		  </div>
+		</div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

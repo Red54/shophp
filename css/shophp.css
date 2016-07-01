@@ -1,6 +1,9 @@
 .input-group-addon {
     min-width: 100px;
 }
+.input-group-addon-sm {
+    min-width: 50px;
+}
 [contenteditable].form-control {
     height: initial;
     min-height: 54px;

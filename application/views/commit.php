@@ -43,51 +43,65 @@
                         <li><a href="<?=site_url()?>">主页</a></li>
                         <li><a href="<?=site_url('gcate')?>">商品</a></li>
                         <li><a href="<?=site_url('acate')?>">文章</a></li>
-                        <li><a href="<?=site_url('oform')?>">订单</a></li>
+                        <li class="active"><a href="<?=site_url('oform')?>">订单<span class="sr-only">(current)</span></a></li>
                         <li><a href="<?=site_url('member')?>">会员</a></li>
                         <li><a href="<?=site_url('admin/admin')?>">管理员</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="<?=site_url('cart')?>">购物车</a></li>
+						<?php if ($this->member_model->vsession()): ?>
                         <li><a href="<?=site_url('login')?>">登录</a></li>
-                        <li class="active"><a href="<?=site_url('reg')?>">注册<span class="sr-only">(current)</span></a></li>
+                        <li><a href="<?=site_url('reg')?>">注册</a></li>
+							<?php else: ?>
+                        <li><a><?=$this->session->member?></a></li>
+                        <li><a href="<?=site_url('logout')?>">退出</a></li>
+					<?php endif; ?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <div class="text-center panel-title"><?=$this->config->item('title')?> <?=$title?></div>
-                </div>
-                <div class="panel-body">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+                    <div class="text-center panel-title"><?=$title?></div>
+		  </div>
+                  <?=form_open('oform/commit')?>
+		  <table class="table">
+			  <tr>
+				  <th>名称</th>
+				  <th>图片</th>
+				  <th>市场价</th>
+				  <th>商城价</th>
+				  <th>库存量</th>
+				  <th>数量</th>
+			  </tr>
+			  <?php foreach ($goods as $a): ?>
+				  <tr>
+					  <td><?=$a['name']?></td>
+					  <td><img src="<?=base_url($a['img'])?>" class="smallimg"></td>
+					  <td><S><?=$a['mprice']?></S></td>
+					  <td><?=$a['sprice']?></td>
+					  <td><?=$a['stocks']?></td>
+					  <td><?=$a['num']?></td>
+				  </tr>
+				  <?php endforeach; ?>
+		  </table>
                     <?=validation_errors('<div class="alert alert-warning text-center" role="alert">', '</div>')?>
-                        <?=form_open('reg')?>
+          <div class="panel-body">
                             <div class="input-group">
-                                <span class="input-group-addon">会员名</span>
-                                <input type="input" name="name" value="<?=set_value('name')?>" class="form-control">
+                                <span class="input-group-addon">总金额</span>
+                                <label class="form-control"><?=$amount?></label>
                             </div>
                             <br />
                             <div class="input-group">
-                                <span class="input-group-addon">密码</span>
-                                <input type="password" name="pass" value="<?=set_value('pass')?>" class="form-control">
+                                <span class="input-group-addon">收货人</span>
+                                <input type="input" name="receiver" value="<?=set_value('receiver')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
-                                <span class="input-group-addon">确认密码</span>
-                                <input type="password" name="conp" value="<?=set_value('conp')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">密保问题</span>
-                                <input type="input" name="passq" value="<?=set_value('passq')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">密保答案</span>
-                                <input type="input" name="passa" value="<?=set_value('passa')?>" class="form-control">
+                                <span class="input-group-addon">收货地址</span>
+                                <input type="input" name="address" value="<?=set_value('address')?>" class="form-control">
                             </div>
                             <br />
                             <div class="input-group">
@@ -96,33 +110,16 @@
                             </div>
                             <br />
                             <div class="input-group">
-                                <span class="input-group-addon">QQ</span>
-                                <input type="input" name="qq" value="<?=set_value('qq')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">邮箱</span>
-                                <input type="input" name="mail" value="<?=set_value('mail')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">联系地址</span>
-                                <input type="input" name="address" value="<?=set_value('address')?>" class="form-control">
-                            </div>
-                            <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">邮政编码</span>
-                                <input type="input" name="pcode" value="<?=set_value('pcode')?>" class="form-control">
+                                <span class="input-group-addon">付款方式</span>
+								<?=form_dropdown('pmethod', $pmethod, set_value('pmethod', 0), 'class="form-control"')?>
                             </div>
                             <br />
                             <div class="text-center">
-                                <input class="btn btn-warning" type="submit" value="注册">
+                                <input class="btn btn-warning" type="submit" value="下单">
                             </div>
-
-                            </form>
-                </div>
-            </div>
-        </div>
+		  </div>
+                  </form>
+		</div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

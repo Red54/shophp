@@ -48,6 +48,7 @@
                         <li><a href="<?=site_url('admin/admin')?>">管理员</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="<?=site_url('cart')?>">购物车</a></li>
                         <li><a><?=$this->session->member?></a></li>
                         <li><a href="<?=site_url('logout')?>">退出</a></li>
                     </ul>

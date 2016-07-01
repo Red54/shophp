@@ -12,8 +12,12 @@ class Article extends CI_Controller
         $this->load->model('acate_model');
     }
 
-    public function index($id)
+    public function index($id = 0)
     {
+		if (0 == $id) {
+			redirect('acate');
+		}
+        $this->article_model->view($id);
         $data['a'] = $this->article_model->get($id);
         $data['cid'] = $data['a']['cid'];
         $data['cname'] = $this->acate_model->get($data['cid'])['name'];
